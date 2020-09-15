@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}
+Explore our products
+{% endblock %}
+
+{% block body %}
+
+<!-- Cards -->
+<div class="small-container single-product">
+
+    <h2 class="title">Featured Products</h2>
+
+    <div class="row">
+        {% for product in products %}
+        <!-- TODO make the whole div clickable -->
+        <div class="col-4">
+            <!-- TODO add this image later -->
+            <!-- <img src="images/product-1.jpg"> -->
+            <h3><a href="/buy?id={{product.id}}">{{product.name}}</a></h4>
+                <p>{{product.desc}}</p>
+
+                <div class="rating">
+                    {% with ''|center:product.avg_rating as range %}
+                        {% for _ in range %}
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        {% endfor %}
+                    {% endwith %}
+                </div> 
+
+                <p>${{product.price}}</p>
+        </div>
+
+        {% endfor %}
+        <div class="testimonial">
+            <div class="small-container">
+                <div class="row">
+                    <div class="col-3">
+                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                        
+                        <img src="images/user-1.png" alt="">
+                        <h3>Martha Parker</h3>
+                    </div>
+                    <div class="col-3">
+                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                        
+                        <img src="images/user-2.png" alt="">
+                        <h3>Eric Harper</h3>
+                    </div>
+                    <div class="col-3">
+                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                       
+                        <img src="images/user-3.png" alt="">
+                        <h3>Pepper Potts</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

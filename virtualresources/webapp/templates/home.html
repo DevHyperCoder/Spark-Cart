@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+Virtual Resources
+{% endblock %}
+{% load static %}
+{% block body %}
+
+<div class="row">
+    <div class="col-2">
+        <h1>SparkCart<br> A New Style!</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua.<br> Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <a href="/explore" class="btn">Explore Now &#8594; </a>
+    </div>
+    <div class="col-2">
+        <img src={% static "images/girl.webp" %} alt="">
+    </div>
+</div>
+
+{% endblock %}

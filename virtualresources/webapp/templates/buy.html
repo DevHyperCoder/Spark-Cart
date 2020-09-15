@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}
+Buy {{product.title}}
+{% endblock %}
+
+{% block body %}
+
+<!-- Display the not_enough_error -->
+<!-- TODO make them clickable -->
+{% if not_enough_error %}
+<h1>Seems you don't have enough money to buy this product</h1>
+<p>Go to this link to redeem a gift card or here to sell a product</p>
+{% endif %}
+{% if same_user%}
+<h1>You can't buy your own product!</h1>
+<p>Explore other products!</p>
+{% else %}
+
+{% if product %}
+
+<!-- Card view -->
+<div class="row">
+    <div class="col-4">
+
+        <!-- TODO add this image later -->
+        <!-- <img src="images/product-1.jpg"> -->
+        <h2> {{product.name}}</h4>
+
+        <div class="rating">
+            {% with ''|center:product.avg_rating as range %}
+            {% for _ in range %}
+            <i class="fa fa-star" aria-hidden="true"></i>
+            {% endfor %}
+            {% endwith %}
+        </div>
+<br>
+        <p>${{product.price}}</p>
+        <br>
+
+        <h3>Product Details <i class="fa fa-indent"></i></h3>
+        <br>
+        <p>{{product.desc}}</p>
+        <br>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" name="id" value="{{product.id}}" hidden=True>
+            <button class="btn" type="submit">Buy Now! for ${{product.price}} only!</button>
+        </form>
+
+        <br>
+
+        <!-- Create a new Rating form -->
+        <h2>Add a rating for this product</h2>
+        <form action="/rate?id={{product.id}}" method="post">
+            {% csrf_token %}
+            <!-- TODO Add the nicer rating bar -->
+            {{rating_form}}
+            <button class="btn" type="submit">Rate this product!</button>
+        </form>
+
+        <br>
+
+        <!-- Rating comments -->
+        <h1>See all the ratings for this product</h1>
+
+        <br>
+
+        <!-- TODO Make a better styling -->
+        {% if ratings %}
+        {% for rating in ratings %}
+<p>{{rating.user.username}}</p>
+        <div class="rating">
+            {% with ''|center:rating.rating_num as range %}
+            {% for _ in range %}
+            <i class="fa fa-star" aria-hidden="true"></i>
+            {% endfor %}
+            {% endwith %}
+        </div>
+        <p>{{rating.text}}</p>
+        <br>
+
+
+        {% endfor %}
+        {% endif %}
+    </div>
+
+</div>
+{% else %}
+<h3>We could not find the product you specified!</h3>
+<form action="/explore">
+    {% csrf_token %}
+
+    <button type="submit">Go back to exploring more products</button>
+</form>
+{% endif %}
+{% endif %}
+
+{% endblock %}
