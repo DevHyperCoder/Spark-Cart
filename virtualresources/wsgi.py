@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/3.1/howto/deployment/wsgi/
 """
 
 import os
+from os.path import dirname
 
 from django.core.wsgi import get_wsgi_application
 
