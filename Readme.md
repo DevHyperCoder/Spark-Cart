@@ -25,3 +25,4 @@ This project has the following features:
 
 [models.py](/virtualresources/webapp/models.py): Model Schema (UserProfile, Ratings and Product)
 
+Issues and Pull Requests Appreciated!!
