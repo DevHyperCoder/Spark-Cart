@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'webapp',
     'widget_tweaks',
-    'django-heroku'
 ]
 
 MIDDLEWARE = [
